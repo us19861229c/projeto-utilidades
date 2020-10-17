@@ -11,5 +11,73 @@
 <body>
   <h1 class="titulo"> Coisas a fazer...</h1>
   
+  <div class="todas-tarefas">
+    <h2 class="titulo-lista-tarefas">Minhas listas:</h2>
+    <ul class="listas-tarefas">
+      <li class="lista-ativa">Projetos</li> <!-- A critério de visualização e estilização -->
+      <li>Cookies</li>
+      <li>Livros</li>
+    </ul>
+  </div>
+
+  <form action="">
+    <input
+      type="text"
+      class="nova lista"
+      placeholder="nome da nova lista"
+      aria-label="nomear nova lista"
+    />
+
+    <button
+      class="botao-adicionar"
+      aria-label="criar nova lista"
+    >
+      +
+    </button>
+  </form>
+
+  <div class="lista-tarefas">
+    <div class="tarefa-topo">
+      <h2 class="titulo-lista">Projetos</h2>
+      <p class="contagem-tarefas">3 tarefas pendentes</p>
+    </div>
+
+    <div class="tarefa-corpo">
+      <div class="tarefas">
+        <div class="item-tarefa">
+          <input
+            type="checkbox"
+            name="" 
+            id="tarefa-1"
+          />
+          <label for="tarefa-1">
+            <span class="checkbox-customizada"></span>
+            projeto lista de tarefas wds&kevin powell
+          </label>
+        </div>
+      </div>
+      <div class="adicionar-tarefas">
+        <form action="">
+          <input
+            type="text"
+            class="nova tarefa"
+            placeholder="nome da nova tarefa"
+            aria-label="nomear nova tarefa"
+          />
+      
+          <button
+            class="botao-adicionar"
+            aria-label="criar nova tarefa"
+          >
+            +
+          </button>
+        </form>
+      </div>
+      <div class="deletar-itens">
+        <button class="botao-deletar">Deletar tarefas feitas</button>
+        <button class="botao-deletar">Deletar a lista</button>  
+      </div>
+    </div>
+  </div>
 </body>
 </html>
