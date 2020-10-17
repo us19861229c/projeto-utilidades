@@ -6,35 +6,35 @@
   <title>Lista de Tarefas | 💡📔</title>
   <link rel="stylesheet" href="./style.css">
   <script src="./script.js" defer></script>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Seymour+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
   <h1 class="titulo"> Coisas a fazer...</h1>
   
-  <div class="todas-tarefas">
-    <h2 class="titulo-lista-tarefas">Minhas listas:</h2>
+  <div class="todas-listas">
+    <h2 class="titulo-listas-tarefas">Minhas listas:</h2>
     <ul class="listas-tarefas">
       <li class="lista-ativa">Projetos</li> <!-- A critério de visualização e estilização -->
       <li>Cookies</li>
       <li>Livros</li>
     </ul>
+    <form action="">
+      <input
+        type="text"
+        class="nova lista"
+        placeholder="nome da nova lista"
+        aria-label="nomear nova lista"
+      />
+  
+      <button
+        class="botao adicionar"
+        aria-label="criar nova lista"
+      >
+        +
+      </button>
+    </form>
   </div>
 
-  <form action="">
-    <input
-      type="text"
-      class="nova lista"
-      placeholder="nome da nova lista"
-      aria-label="nomear nova lista"
-    />
-
-    <button
-      class="botao-adicionar"
-      aria-label="criar nova lista"
-    >
-      +
-    </button>
-  </form>
 
   <div class="lista-tarefas">
     <div class="tarefa-topo">
@@ -46,13 +46,12 @@
       <div class="tarefas">
         <div class="item-tarefa">
           <input
-            type="checkbox"
-            name="" 
+            type="checkbox" 
             id="tarefa-1"
           />
           <label for="tarefa-1">
             <span class="checkbox-customizada"></span>
-            projeto lista de tarefas wds&kevin powell
+            projeto lista de tarefas wds&kp
           </label>
         </div>
       </div>
@@ -66,7 +65,7 @@
           />
       
           <button
-            class="botao-adicionar"
+            class="botao adicionar"
             aria-label="criar nova tarefa"
           >
             +
@@ -74,8 +73,8 @@
         </form>
       </div>
       <div class="deletar-itens">
-        <button class="botao-deletar">Deletar tarefas feitas</button>
-        <button class="botao-deletar">Deletar a lista</button>  
+        <button class="botao deletar">Deletar finalizadas</button>
+        <button class="botao deletar">Deletar a lista</button>  
       </div>
     </div>
   </div>
