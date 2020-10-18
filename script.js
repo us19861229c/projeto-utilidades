@@ -1,6 +1,7 @@
 const containerLista = document.querySelector('[data-listas]');
 const novaListaFormulario = document.querySelector('[data-form-nova-lista]');
 const novaListaInput = document.querySelector('[data-input-nova-lista]');
+const botaoDeletarLista = document.querySelector('[data-botao-deletar-lista]');
 
 const LOCAL_STORAGE_CHAVE_LISTA = 'listas.tarefas';
 const LOCAL_STORAGE_SELECIONADA_ID_CHAVE_LISTA = 'listas.selecionaListaId';
@@ -12,6 +13,12 @@ containerLista.addEventListener('click', e => {
     listaSelecionada = e.target.dataset.listaId;
     salvarERenderizar();
   }
+})
+
+botaoDeletarLista.addEventListener('click', e => {
+  listas = listas.filter(lista => lista.id !== listaSelecionada);
+  listaSelecionada = null;
+  salvarERenderizar();
 })
 
 novaListaFormulario.addEventListener('submit', e => {
