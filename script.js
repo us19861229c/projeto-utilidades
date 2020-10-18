@@ -9,6 +9,9 @@ const elementoContagemPendenteLista = document.querySelector('[data-contagem-lis
 const containerTarefas = document.querySelector('[data-tarefas]');
 const modeloTarefa = document.querySelector('#modelo-tarefa');
 
+const novaTarefaFormulario = document.querySelector('[data-form-nova-tarefa]');
+const novaTarefaInput = document.querySelector('[data-input-nova-tarefa]');
+
 const LOCAL_STORAGE_CHAVE_LISTA = 'listas.tarefas';
 const LOCAL_STORAGE_SELECIONADA_ID_CHAVE_LISTA = 'listas.selecionaListaId';
 let listas = JSON.parse(localStorage.getItem(LOCAL_STORAGE_CHAVE_LISTA)) || []; 
@@ -38,16 +41,25 @@ novaListaFormulario.addEventListener('submit', e => {
   salvarERenderizar();
 })
 
+novaTarefaFormulario.addEventListener('submit', e => {
+  e.preventDefault();
+  const nomeDaTarefa = novaTarefaInput.value;
+  console.log('qual nome da tarefa:', nomeDaTarefa)
+  if (nomeDaTarefa == null || nomeDaTarefa == '') return alert('Por favor,\ndigite uma tarefa');
+  const tarefa = criarTarefa(nomeDaTarefa);
+  console.log(' nome da tarefa persiste?', tarefa)
+  novaTarefaInput.value = null;
+  const listaSelecionadaFiltradaID = listas.find(lista => lista.id === listaSelecionada);
+  listaSelecionadaFiltradaID.tarefas.push(tarefa)
+  salvarERenderizar();
+})
+
 function criarLista(nome) {
-  return { id: Date.now().toString(), nome, tarefas: [{
-    id: 1,
-    nome: 'lista de tarefas',
-    completada: false
-  },{
-    id: 2,
-    nome: 'calculadora',
-    completada: true
-  }]}
+  return { id: Date.now().toString(), nome, tarefas: []}
+}
+
+function criarTarefa(nome) {
+  return { id: Date.now().toString(), nome, completada: false }
 }
 
 function salvarERenderizar() {
@@ -64,7 +76,7 @@ function renderizar() {
   limparElemento(containerLista);
   renderizarListas();
 
-  const listaSelecionadaFiltradaID = listas.find(lista => lista.id === listaSelecionada)
+  const listaSelecionadaFiltradaID = listas.find(lista => lista.id === listaSelecionada);
   if(listaSelecionada == null) {
     containerExibirLista.style.display = 'none';
   } else {
