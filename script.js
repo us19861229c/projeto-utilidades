@@ -11,6 +11,7 @@ const modeloTarefa = document.querySelector('#modelo-tarefa');
 
 const novaTarefaFormulario = document.querySelector('[data-form-nova-tarefa]');
 const novaTarefaInput = document.querySelector('[data-input-nova-tarefa]');
+const botaoDeletarTarefa = document.querySelector('[data-botao-deletar-tarefa]');
 
 const LOCAL_STORAGE_CHAVE_LISTA = 'listas.tarefas';
 const LOCAL_STORAGE_SELECIONADA_ID_CHAVE_LISTA = 'listas.selecionaListaId';
@@ -27,6 +28,12 @@ containerLista.addEventListener('click', e => {
 botaoDeletarLista.addEventListener('click', e => {
   listas = listas.filter(lista => lista.id !== listaSelecionada);
   listaSelecionada = null;
+  salvarERenderizar();
+})
+
+botaoDeletarTarefa.addEventListener('click', e => {
+  const listaSelecionadaFiltradaID = listas.find(lista => lista.id === listaSelecionada);
+  listaSelecionadaFiltradaID.tarefas = listaSelecionadaFiltradaID.tarefas.filter( tarefa => !tarefa.completada);
   salvarERenderizar();
 })
 
