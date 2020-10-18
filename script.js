@@ -3,7 +3,16 @@ const novaListaFormulario = document.querySelector('[data-form-nova-lista]');
 const novaListaInput = document.querySelector('[data-input-nova-lista]');
 
 const LOCAL_STORAGE_CHAVE_LISTA = 'listas.tarefas';
+const LOCAL_STORAGE_SELECIONADA_ID_CHAVE_LISTA = 'listas.selecionaListaId';
 let listas = JSON.parse(localStorage.getItem(LOCAL_STORAGE_CHAVE_LISTA)) || []; 
+let listaSelecionada = localStorage.getItem(LOCAL_STORAGE_SELECIONADA_ID_CHAVE_LISTA);
+
+containerLista.addEventListener('click', e => {
+  if (e.target.tagName.toLowerCase() === 'li') {
+    listaSelecionada = e.target.dataset.listaId;
+    salvarERenderizar();
+  }
+})
 
 novaListaFormulario.addEventListener('submit', e => {
   e.preventDefault();
@@ -26,6 +35,7 @@ function salvarERenderizar() {
 
 function salvar() {
   localStorage.setItem(LOCAL_STORAGE_CHAVE_LISTA, JSON.stringify(listas));
+  localStorage.setItem(LOCAL_STORAGE_SELECIONADA_ID_CHAVE_LISTA, listaSelecionada);
 }
   
 function renderizar() {
@@ -34,6 +44,7 @@ function renderizar() {
     const itemDeLista = document.createElement('li');
     itemDeLista.dataset.listaId = lista.id
     itemDeLista.innerText = lista.nome;
+    if(lista.id === listaSelecionada) itemDeLista.classList.add('lista-ativa')
     containerLista.appendChild(itemDeLista);
   })
 }
