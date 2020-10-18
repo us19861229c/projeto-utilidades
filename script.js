@@ -3,6 +3,11 @@ const novaListaFormulario = document.querySelector('[data-form-nova-lista]');
 const novaListaInput = document.querySelector('[data-input-nova-lista]');
 const botaoDeletarLista = document.querySelector('[data-botao-deletar-lista]');
 
+const containerExibirLista = document.querySelector('[data-container-exibe-lista]');
+const elementoTituloLista = document.querySelector('[data-titulo-lista]');
+const elementoContagemPendenteLista = document.querySelector('[data-contagem-lista]');
+const containerTarefas = document.querySelector('[data-tarefas]');
+
 const LOCAL_STORAGE_CHAVE_LISTA = 'listas.tarefas';
 const LOCAL_STORAGE_SELECIONADA_ID_CHAVE_LISTA = 'listas.selecionaListaId';
 let listas = JSON.parse(localStorage.getItem(LOCAL_STORAGE_CHAVE_LISTA)) || []; 
@@ -47,11 +52,23 @@ function salvar() {
   
 function renderizar() {
   limparElemento(containerLista);
+  renderizarListas();
+
+  const listaSelecionadaID = listas.find(lista => lista.id === listaSelecionada)
+  if(listaSelecionada == null) {
+    containerExibirLista.style.display = 'none';
+  } else {
+    containerExibirLista.style.display = '';
+    elementoTituloLista.innerText = listaSelecionadaID.nome;
+  }
+}
+
+function renderizarListas() {
   listas.forEach(lista => {
     const itemDeLista = document.createElement('li');
     itemDeLista.dataset.listaId = lista.id
     itemDeLista.innerText = lista.nome;
-    if(lista.id === listaSelecionada) itemDeLista.classList.add('lista-ativa')
+    if(lista.id === listaSelecionada) itemDeLista.classList.add('lista-ativa');
     containerLista.appendChild(itemDeLista);
   })
 }
