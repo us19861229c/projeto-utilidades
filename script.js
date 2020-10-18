@@ -44,14 +44,22 @@ novaListaFormulario.addEventListener('submit', e => {
 novaTarefaFormulario.addEventListener('submit', e => {
   e.preventDefault();
   const nomeDaTarefa = novaTarefaInput.value;
-  console.log('qual nome da tarefa:', nomeDaTarefa)
   if (nomeDaTarefa == null || nomeDaTarefa == '') return alert('Por favor,\ndigite uma tarefa');
   const tarefa = criarTarefa(nomeDaTarefa);
-  console.log(' nome da tarefa persiste?', tarefa)
   novaTarefaInput.value = null;
   const listaSelecionadaFiltradaID = listas.find(lista => lista.id === listaSelecionada);
   listaSelecionadaFiltradaID.tarefas.push(tarefa)
   salvarERenderizar();
+})
+
+containerTarefas.addEventListener('click', e => {
+  if( e.target.tagName.toLowerCase() === 'input') {
+    const listaSelecionadaFiltradaID = listas.find(lista => lista.id === listaSelecionada);
+    const tarefaSelecionadaFiltradaID = listaSelecionadaFiltradaID.tarefas.find( tarefa => tarefa.id === e.target.id);
+    tarefaSelecionadaFiltradaID.completada = e.target.checked;
+    salvar();
+    renderizarContagemTarefasPendentes(listaSelecionadaFiltradaID);
+  }
 })
 
 function criarLista(nome) {
