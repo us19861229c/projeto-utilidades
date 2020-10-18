@@ -37,7 +37,11 @@ novaListaFormulario.addEventListener('submit', e => {
 })
 
 function criarLista(nome) {
-  return { id: Date.now().toString(), nome, tarefas: []}
+  return { id: Date.now().toString(), nome, tarefas: [{
+    id: 1,
+    nome: 'lista de tarefas',
+    completada: false
+  }]}
 }
 
 function salvarERenderizar() {
@@ -60,7 +64,16 @@ function renderizar() {
   } else {
     containerExibirLista.style.display = '';
     elementoTituloLista.innerText = listaSelecionadaID.nome;
+    renderizarContagemTarefasPendentes(listaSelecionada);
   }
+}
+
+function renderizarContagemTarefasPendentes(listaSelecionada) {
+  console.log('quem é', listaSelecionada.tarefas)
+  if(!listaSelecionada.tarefas) return elementoContagemPendenteLista.innerText = 'nenhuma tarefa pendente';
+  const tarefasPendentes = listaSelecionada.tarefas.filter(tarefa => !tarefa.completada).length;
+  const pendentePluralOuSingular = tarefasPendentes.length === 1 ? 'tarefa pendente' : 'tarefas pendentes';
+  elementoContagemPendenteLista.innerText = `${tarefasPendentes} ${pendentePluralOuSingular} `
 }
 
 function renderizarListas() {
