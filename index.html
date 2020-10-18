@@ -40,26 +40,18 @@
   <div class="lista-tarefas" data-container-exibe-lista>
     <div class="tarefa-topo">
       <h2 class="titulo-lista" data-titulo-lista>Projetos</h2>
-      <p class="contagem-tarefas" data-contagem-lista>3 tarefas pendentes</p>
+      <p class="contagem-tarefas" data-contagem-lista></p>
     </div>
 
     <div class="tarefa-corpo">
       <div class="tarefas" data-tarefas>
-        <div class="item-tarefa">
-          <input
-            type="checkbox" 
-            id="tarefa-1"
-          />
-          <label for="tarefa-1">
-            <span class="checkbox-customizada"></span>
-            projeto lista de tarefas wds&kp
-          </label>
-        </div>
+        
       </div>
       <div class="adicionar-tarefas">
-        <form action="">
+        <form action="" data-form-nova-tarefa>
           <input
             type="text"
+            data-input-nova-tarefa
             class="nova tarefa"
             placeholder="nome da nova tarefa"
             aria-label="nomear nova tarefa"
@@ -79,5 +71,13 @@
       </div>
     </div>
   </div>
+  <template id='modelo-tarefa'> <!-- tag oculta que não é automaticamente exibida no HTML, mas pode ser manipulada via javaScript-->
+    <div class="item-tarefa">
+      <input type="checkbox" />
+      <label>
+        <span class="checkbox-customizada"></span>
+      </label>
+    </div>
+  </template>
 </body>
 </html>
