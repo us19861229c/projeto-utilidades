@@ -2,18 +2,8 @@ const containerLista = document.querySelector('[data-listas]');
 const novaListaFormulario = document.querySelector('[data-form-nova-lista]');
 const novaListaInput = document.querySelector('[data-input-nova-lista]');
 
-
-let listas = [
-  {
-    id: 1, 
-    nome: 'Projeto'
-  },{
-    id: 2, 
-    nome: 'Cookies'
-  },{
-    id: 3, 
-    nome: 'Livros'
-  }]; 
+const LOCAL_STORAGE_CHAVE_LISTA = 'listas.tarefas';
+let listas = JSON.parse(localStorage.getItem(LOCAL_STORAGE_CHAVE_LISTA)) || []; 
 
 novaListaFormulario.addEventListener('submit', e => {
   e.preventDefault();
@@ -22,11 +12,20 @@ novaListaFormulario.addEventListener('submit', e => {
   const lista = criarLista(nomeDaLista);
   novaListaInput.value = null;
   listas.push(lista);
-  renderizar();
+  salvarERenderizar();
 })
 
 function criarLista(nome) {
   return { id: Date.now().toString(), nome, tarefas: []}
+}
+
+function salvarERenderizar() {
+  salvar();  
+  renderizar();
+}
+
+function salvar() {
+  localStorage.setItem(LOCAL_STORAGE_CHAVE_LISTA, JSON.stringify(listas));
 }
   
 function renderizar() {
