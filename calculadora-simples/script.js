@@ -1,4 +1,4 @@
-let botoes_calculadora = [
+let botoesCalculadora = [
   {
       nome : "apagar",
       simbolo : "⌫",
@@ -96,3 +96,8 @@ let botoes_calculadora = [
       tipo : "calcular"
   }
 ];
+
+// Selecionando os elementos:
+const elementoEntrada = document.querySelector('.entrada-calculadora');
+const elementoSaidaResultado = document.querySelector('.resultado .valor');
+const elementoSaidaConta = document.querySelector('.conta .valor');
