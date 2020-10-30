@@ -3,12 +3,12 @@ let botoesCalculadora = [
       nome : "apagar",
       simbolo : "⌫",
       formula : false,
-      tipo : "botao"
+      tipo : "corrigir"
   },{
       nome : "limpar",
       simbolo : "C",
       formula : false,
-      tipo : "botao"
+      tipo : "corrigir"
   },{
       nome : "porcento",
       simbolo : "%",
@@ -122,7 +122,7 @@ function criarBotoes() {
 
 criarBotoes();
 
-// Evento de clique nos botões (elementos de entrada)
+// Evento de clique nos botões (elementos de entrada):
 elementoEntrada.addEventListener('click', botao => {
   const botaoAlvo = botao.target;
 
@@ -130,3 +130,45 @@ elementoEntrada.addEventListener('click', botao => {
     if (botao.nome === botaoAlvo.id) realizarConta(botao);
   })
 })
+
+
+// Dados para cálculo: 
+let dadosParaConta = {
+  conta: [],
+  resultado: [],
+}
+
+// Funcionamento da calculadora:
+function realizarConta(botao) {
+  if (botao.tipo === 'operador') {
+    dadosParaConta.conta.push(botao.simbolo);
+    dadosParaConta.resultado.push(botao.formula);
+
+  } else if (botao.tipo === 'numero') {
+    dadosParaConta.conta.push(botao.simbolo);
+    dadosParaConta.resultado.push(botao.formula);
+
+  } else if (botao.tipo === 'corrigir') {
+    if (botao.nome === 'apagar') {
+      dadosParaConta.conta.pop();
+      dadosParaConta.resultado.pop();
+
+    } else if (botao.nome === 'limpar') {
+      dadosParaConta.conta = [];
+      dadosParaConta.resultado = [];
+      atualizarSaidaResultado(0);
+    }
+
+  } else if (botao.tipo === 'calcular') {
+
+  }
+  atualizarSaidaConta(dadosParaConta.conta.join(''));
+}
+
+function atualizarSaidaResultado(resultado) {
+  elementoSaidaResultado.innerHTML = resultado;
+}
+
+function atualizarSaidaConta(conta) {
+  elementoSaidaConta.innerHTML = conta;
+}
