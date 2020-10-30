@@ -160,6 +160,16 @@ function realizarConta(botao) {
     }
 
   } else if (botao.tipo === 'calcular') {
+    let juntarResultado = dadosParaConta.resultado.join('');
+    let resultado = eval(juntarResultado);
+
+    atualizarSaidaResultado(resultado);
+
+    dadosParaConta.conta = [];
+    dadosParaConta.resultado = [];
+
+    dadosParaConta.conta.push(resultado);
+    dadosParaConta.resultado.push(resultado);
 
   }
   atualizarSaidaConta(dadosParaConta.conta.join(''));
