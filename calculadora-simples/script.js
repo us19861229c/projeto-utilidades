@@ -101,3 +101,23 @@ let botoesCalculadora = [
 const elementoEntrada = document.querySelector('.entrada-calculadora');
 const elementoSaidaResultado = document.querySelector('.resultado .valor');
 const elementoSaidaConta = document.querySelector('.conta .valor');
+
+// Criando os botões:
+function criarBotoes() {
+  const botoesPorLinha = 4; 
+  let botoesAdicionados = 0;
+
+  botoesCalculadora.forEach((botao) => {
+    if (botoesAdicionados % botoesPorLinha === 0) {
+      elementoEntrada.innerHTML += '<div class="linha"></div>';
+    }
+
+    const linha = document.querySelector('.linha:last-child');
+
+    linha.innerHTML += `<button id="${botao.nome}"> ${botao.simbolo} </button>`;
+
+    botoesAdicionados += 1;
+  })
+}
+
+criarBotoes();
