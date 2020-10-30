@@ -161,7 +161,17 @@ function realizarConta(botao) {
 
   } else if (botao.tipo === 'calcular') {
     let juntarResultado = dadosParaConta.resultado.join('');
-    let resultado = eval(juntarResultado);
+
+    let resultado;
+      try {
+          resultado = eval(juntarResultado); 
+      } catch (error) {
+        if (error instanceof SyntaxError) {
+            resultado = "Erro!"
+            atualizarSaidaResultado( resultado );
+            return;
+        }
+      }
 
     resultado = formatarResultado(resultado);
 
