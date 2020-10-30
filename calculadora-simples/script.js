@@ -121,3 +121,12 @@ function criarBotoes() {
 }
 
 criarBotoes();
+
+// Evento de clique nos botões (elementos de entrada)
+elementoEntrada.addEventListener('click', botao => {
+  const botaoAlvo = botao.target;
+
+  botoesCalculadora.forEach( botao => {
+    if (botao.nome === botaoAlvo.id) realizarConta(botao);
+  })
+})
