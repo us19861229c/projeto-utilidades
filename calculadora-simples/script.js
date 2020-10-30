@@ -163,6 +163,8 @@ function realizarConta(botao) {
     let juntarResultado = dadosParaConta.resultado.join('');
     let resultado = eval(juntarResultado);
 
+    resultado = formatarResultado(resultado);
+
     atualizarSaidaResultado(resultado);
 
     dadosParaConta.conta = [];
@@ -181,4 +183,38 @@ function atualizarSaidaResultado(resultado) {
 
 function atualizarSaidaConta(conta) {
   elementoSaidaConta.innerHTML = conta;
+}
+
+// Limitando os caracteres e o modo como são exibidos em tela:
+function formatarResultado(resultado) {
+  const tamanhoMaximoDeSaida = 10;
+  const numeroPrecisaoDeSaida = 5; 
+
+  if (contarDigitos(resultado) > tamanhoMaximoDeSaida) {
+    if (seraDecimal(resultado)) {
+      const resultadoInteiro = parseInt(resultado);
+      const tamanhoResultadoInteiro = contarDigitos(resultadoInteiro);
+
+      if (tamanhoResultadoInteiro > tamanhoMaximoDeSaida) {
+        return resultado.toPrecision(numeroPrecisaoDeSaida);
+      } else {
+        const numeroDeDigitosDepoisDoPonto = tamanhoMaximoDeSaida - tamanhoResultadoInteiro;
+        return resultado.toFixed(numeroDeDigitosDepoisDoPonto);
+      }
+    } else {
+      return resultado.toPrecision(numeroPrecisaoDeSaida);
+    }
+  } else {
+    return resultado;
+  }
+}
+
+// Contador de dígitos: 
+function contarDigitos(numero) {
+  return numero.toString().length;
+}
+
+// retorna se um numero é decimal ou não: 
+function seraDecimal(numero) {
+  return numero % 1 != 0;
 }
